@@ -13,11 +13,11 @@ function MyApp({ Component, pageProps }) {
         @import url({"https://cdn.lineicons.com/3.0/lineicons.css"});
      
           </style>
-          <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet" />
+   
         </Head>
-<Component {...pageProps} 
+<Component {...pageProps} /> 
 </div>
-/> )
+)
 }
 
 export default MyApp
