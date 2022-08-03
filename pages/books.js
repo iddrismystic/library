@@ -21,8 +21,8 @@ return (
         <div className="container">
             <Card funcss="round-edge padding">
                 
-<div class="horizontal-scroll">
-  <table class="table text-small">
+<div className="horizontal-scroll">
+  <table className="table text-small">
     <tr>
       <th>Image</th>
       <th>Title</th>
