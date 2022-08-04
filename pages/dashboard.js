@@ -17,7 +17,7 @@ import React, { PureComponent } from 'react';
 // import  Tooltip  from 'recharts/src/Tooltip';
 // import  Legend  from 'recharts/src/Legend';
 
-import { LineChart, Line, Tooltip, Legend } from "recharts"
+// import { LineChart, Line, Tooltip, Legend } from "recharts"
 // const { LineChart, Line, Tooltip, Legend } = dynamic(()=>import("recharts"),{ssr:false})
 import Navbar from './navBar';
 
@@ -106,7 +106,7 @@ const data = [
             </div>
             <div className="card padding round-edge margin-top-20">
             <div className="graph">
-                <LineChart
+                {/* <LineChart
           width={700}
           height={200}
           data={data}
@@ -115,7 +115,7 @@ const data = [
           <Tooltip />
           <Legend />
           <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
-        </LineChart>
+        </LineChart> */}
                     </div>
             </div>
 
