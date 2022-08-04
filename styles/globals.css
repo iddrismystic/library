@@ -46,6 +46,7 @@ backdrop-filter: blur(17.4px);
 }
 .sidebarContent a , .circle{transition: 0.3s ease-in;}
 .sidebarContent a:hover{color:var(--primary)}
+
 .graph{
   margin:30px auto;
   overflow:hidden;
@@ -72,3 +73,18 @@ backdrop-filter: blur(17.4px);
 }
 .form{border-left:10px solid var(--secondary);}
 .form input , button{border-radius: 200px !important;padding:15px !important;}
+@media(max-width:993px){
+  .sideBar{
+    left: 0;
+    top: 0;
+    z-index: 11;
+    height: 100vh;
+  }
+  .main{
+    width: 100%;
+    position: static;
+  }
+  .navBar{
+    width: 100%;
+  }
+}
