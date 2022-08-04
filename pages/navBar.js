@@ -8,7 +8,7 @@ import Avatar from '../Funcss/Components/Avatar';
 import Typography from '../Funcss/Components/Typography';
 import Section from '../Funcss/Components/Section';
 import Link from 'next/link';
-import React, { PureComponent, useState } from 'react';
+import React, { PureComponent, useState ,useEffect} from 'react';
 
 export default function Navbar() {
   const [sidebar, setsidebar] = useState("")
@@ -19,11 +19,14 @@ export default function Navbar() {
       setsidebar("-100%")
     }
   }
+useEffect(() => {
   window.addEventListener("resize" , ()=>{
     if(screen.width > 993){
       setsidebar("")
     }
   })
+}, [])
+
   return (
     <div className="">
    <div className=" padding">
