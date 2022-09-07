@@ -115,7 +115,7 @@ localStorage.setItem("books",
      {
          categories ? 
          categories.map(docs=>(
-            <option value={docs.category}>{docs.category}</option>
+            <option value={docs.category} key={docs.category}>{docs.category}</option>
          ))
          :
          <option>There is not category</option>
