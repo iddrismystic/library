@@ -11,7 +11,7 @@ import Hr from '../Funcss/Components/Hr';
 import Section from '../Funcss/Components/Section';
 import Link from 'next/link';
 import dynamic from "next/dynamic"
-import React, { PureComponent } from 'react';
+import React, { PureComponent, useEffect, useState } from 'react';
 // import  LineChart  from 'recharts/src/LineChart';
 // import  Line  from 'recharts/src/Line';
 // import  Tooltip  from 'recharts/src/Tooltip';
@@ -23,80 +23,56 @@ import Navbar from './navBar';
 
 export default function Dashboard() {
     
-const data = [
-    {
-      name: 'Page A',
-      uv: 4000,
-      pv: 2400,
-      amt: 2400,
-    },
-    {
-      name: 'Page B',
-      uv: 3000,
-      pv: 1398,
-      amt: 2210,
-    },
-    {
-      name: 'Page C',
-      uv: 2000,
-      pv: 9800,
-      amt: 2290,
-    },
-    {
-      name: 'Page D',
-      uv: 2780,
-      pv: 3908,
-      amt: 2000,
-    },
-    {
-      name: 'Page E',
-      uv: 1890,
-      pv: 4800,
-      amt: 2181,
-    },
-    {
-      name: 'Page F',
-      uv: 2390,
-      pv: 3800,
-      amt: 2500,
-    },
-    {
-      name: 'Page G',
-      uv: 3490,
-      pv: 4300,
-      amt: 2100,
-    },
-  ];
+  const [borrows, setborrows] = useState([])
+  const [user, setuser] = useState(null)
+  const [books, setbooks] = useState([])
+  useEffect(() => {
+
+      if(localStorage.getItem("borrows")  ){
+        setborrows(
+            JSON.parse(
+                localStorage.getItem("borrows") 
+            )
+        )
+        setbooks(
+          JSON.parse(
+            localStorage.getItem("books") 
+        )
+        )
+    }
+  },[])
   return (
     <div className="dashboard">
    <Navbar />
         <div className="main ">
             <div className="container">
             <div className="card padding round-edge ">
-               <div className="row-flex space-between">
-               <Typography text="Dashboard" heading="h2" funcss="padding"/>
-               <div>
-               <Typography text="Books" heading="h2" funcss="padding"/>
-               </div>
-               </div>
+              <div className='padding'>
+              <Typography text="Dashboard" heading="h2" />
+              <div>Book analytics</div>
+              </div>
                 <div className="section">
                     <div className="row-flex">
                        <div className='padding'>
-                       <div className="padding card round-edge">
-                            <Typography text="250" funcss="text-primary" heading="h2"/>
-                            <Typography text="Total Books"/>
+                       <div className="padding card success round-edge">
+                            <Typography text={books.length} funcss="text-white" heading="h1"/>
+                            <div className="text-bold text-white">
+                              Total Books
+                            </div>
                         </div>
                        </div>
-                       <div className='padding'>
+                       {/* <div className='padding'>
                        <div className="padding card secondary round-edge">
                             <Typography text="2000" funcss="text-primary" heading="h2"/>
                             <Typography text="Total Students"/>
                         </div>
-                       </div>
+                       </div> */}
                        <div className='padding'>
                        <div className="padding card primary text-white round-edge">
-                            <Typography text="250" funcss="text-white" heading="h2"/>
-                            <Typography text="Books Borrowed"/>
+                            <Typography text={borrows.length} funcss="text-white" heading="h1"/>
+                            <div className="text-bold">
+                              Borrowed Books
+                            </div>
                         </div>
                        </div>
 

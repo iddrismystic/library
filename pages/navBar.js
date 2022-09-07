@@ -93,6 +93,20 @@ useEffect(() => {
         </a>
         </Link>
         </ListItem>
+        <ListItem>
+       <Link href="/user">
+        <a>
+        <RowFlex justify="">
+        <Div>
+        <Avatar width="40" height="40" bg="light">
+        <Icon icon="icon-notebook" color="indigo" />
+        </Avatar>
+        </Div>
+        <Div funcss="padding">My Books</Div>
+        </RowFlex>
+        </a>
+        </Link>
+        </ListItem>
         {
           user === "admin@gmail.com" &&
           <div>
@@ -110,20 +124,7 @@ useEffect(() => {
         </a>
         </Link>
         </ListItem>
-        <ListItem>
-       <Link href="/">
-        <a>
-        <RowFlex justify="">
-        <Div>
-        <Avatar width="40" height="40" bg="light">
-        <Icon icon="icon-notebook" color="indigo" />
-        </Avatar>
-        </Div>
-        <Div funcss="padding">Delete Book</Div>
-        </RowFlex>
-        </a>
-        </Link>
-        </ListItem>
+
         <ListItem>
        <Link href="/add/category">
         <a>
