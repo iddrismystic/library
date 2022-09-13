@@ -49,7 +49,9 @@ export default function Dashboard() {
             <div className="card padding round-edge ">
               <div className='padding'>
               <Typography text="Dashboard" heading="h2" />
-              <div>Book analytics</div>
+              <p className="text-bold">
+              <div>Books analytics</div>
+              </p>
               </div>
                 <div className="section">
                     <div className="row-flex">

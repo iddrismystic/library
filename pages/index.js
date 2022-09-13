@@ -46,14 +46,11 @@ resolve("/dashboard")
 
      
 <Card funcss="width-400-max center white round-edge padding-20 form">
-<Div funcss="row-flex">
-<div className="padding">
-    <Icon icon="fas fa-book" size={3} color="primary" />
-</div>
-<div className="padding">
-<Typography heading="h1" text="Login Account" />
-</div>
-</Div>
+
+<p className="padding">
+<Typography heading="h2" text="WTU - Books Library" />
+</p>
+
 <Grid>
 <Col sm={12} md={12} lg={12} funcss="padding">
     <IconicInput funcss="section full-width" position="left" >
