@@ -42,7 +42,7 @@ useEffect(() => {
    <div className=" padding">
       <nav className="navBar card  white round-edge">
         <div>
-        <Typography heading="h4" text="WTU - Library" funcss="text-primary"/>
+        <Typography heading="h4" text="Library Catalogue" funcss="text-primary"/>
           </div>
           <div>
             <button className='button card text-indigo text-bold' onClick={()=>{

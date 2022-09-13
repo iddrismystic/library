@@ -18,27 +18,32 @@ export default function Books() {
   const [books, setbooks] = useState([])
   const [borrows, setborrows] = useState([])
   const [user, setuser] = useState(null)
+  const [search, setsearch] = useState("")
+  const [getBooks, setgetBooks] = useState(true)
   useEffect(() => {
+    if(getBooks){
       if(localStorage.getItem("books")){
-          setbooks(
-          JSON.parse(
-              localStorage.getItem("books")
-          )
-          )
-      }
-
-      
-      if(localStorage.getItem("borrows")  ){
-        setborrows(
-            JSON.parse(
-                localStorage.getItem("borrows") 
-            )
+        setbooks(
+        JSON.parse(
+            localStorage.getItem("books")
+        )
         )
     }
-    setuser(JSON.parse(
-      sessionStorage.getItem("currentUser")
-    ))
-  },[])
+
+    
+    if(localStorage.getItem("borrows")  ){
+      setborrows(
+          JSON.parse(
+              localStorage.getItem("borrows") 
+          )
+      )
+  }
+  setuser(JSON.parse(
+    sessionStorage.getItem("currentUser")
+  ))
+  setgetBooks(false)
+    }
+  })
   const HandleBorrow = (book)=>{
     borrows.push(
       {
@@ -52,6 +57,15 @@ export default function Books() {
     )
 new Promise ((resolve , reject)=>{
 localStorage.setItem("borrows" , JSON.stringify(borrows))
+
+localStorage.setItem("books" , JSON.stringify(
+books.filter(docs=>{
+  if(docs.bookCode.toString() != book.bookCode){
+    return docs
+  }
+})
+
+))
   resolve()
 }).then(()=>{
   alert(user + ": Book borrowed successfully.");
@@ -74,7 +88,11 @@ return (
 
     </p>
           <div className="padding-top-20">
-          <Card funcss="round-edge padding">
+            <p className="">
+              <input type="text" onChange={(e)=>setsearch(e.target.value)} className="card white input roundEdge borderless full-width" placeholder='Search'/>
+            </p>
+            <div className='padding-top-20'>
+            <Card funcss="round-edge padding">
                 
                 <div className="horizontal-scroll">
                   <table className="table text-small">
@@ -88,7 +106,20 @@ return (
                     </tr>
                 {
                   books ?
-                books.map((doc)=>(
+                books.filter(docs=>{
+                  if(search === ""){
+                    return books
+                  }else if(
+                    search.toString().trim().toLowerCase().includes(docs.isbn.toString().trim().toLowerCase().slice(0,search.length)) ||
+                    search.toString().trim().toLowerCase().includes(docs.title.toString().trim().toLowerCase().slice(0,search.length)) ||
+                    search.toString().trim().toLowerCase().includes(docs.category.toString().trim().toLowerCase().slice(0,search.length)) ||
+                    search.toString().trim().toLowerCase().includes(docs.author.toString().trim().toLowerCase().slice(0,search.length)) ||
+                    search.toString().trim().toLowerCase().includes(docs.bookCode.toString().trim().toLowerCase().slice(0,search.length)) 
+                   // search.toString().trim().toLowerCase().includes(docs.shelve.toString().trim().toLowerCase().slice(0,search.length))
+                  ){
+                    return docs;
+                  }
+                }).map((doc)=>(
                   <tr key={doc.isbn}>
                   <td>
                   <Typography text={doc.title} />
@@ -97,18 +128,39 @@ return (
                   <td>{doc.category}</td>
                   <td>{doc.author}</td>
                   <td>{doc.bookCode}</td>
-                  <td>
+                  {
+                    doc.borrowed ?
+                    <td>Borrowed</td>
+                    :
+                    <td>
                     <button className='button success text-white card' onClick={()=>HandleBorrow(doc)}>Borrow</button>
                   </td>
+                  }
                 </tr>
                 ))
                 :
                 "No books"
                 }
+                {
+                  borrows &&
+                  borrows.map(doc=>(
+                    <tr key={doc.isbn}>
+                    <td>
+                    <Typography text={doc.title} />
+                    </td>
+                    <td>{doc.isbn}</td>
+                    <td>{doc.category}</td>
+                    <td>{doc.author}</td>
+                    <td>{doc.bookCode}</td>
+                      <td className='text-small text-bold'>Borrowed by {doc.email}</td>
+                  </tr>
+                  ))
+                }
                   </table>
                 </div>
                 
                             </Card>
+            </div>
           </div>
         </div>
 

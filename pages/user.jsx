@@ -17,7 +17,15 @@ import { useState,useEffect } from 'react'
 export default function Books() {
   const [borrows, setborrows] = useState([])
   const [user, setuser] = useState(null)
+  const [books, setbooks] = useState([])
   useEffect(() => {
+    if(localStorage.getItem("books")){
+      setbooks(
+      JSON.parse(
+          localStorage.getItem("books")
+      )
+      )
+  }
 
       if(localStorage.getItem("borrows")  ){
         setborrows(
@@ -31,6 +39,26 @@ export default function Books() {
     ))
   },[])
 
+  const Return = (book)=>{
+    new Promise((resolve, reject) => {
+      books.push(book)
+      resolve()
+    }).then(()=>{
+      localStorage.setItem("books" , JSON.stringify(books))
+
+      localStorage.setItem("borrows" , JSON.stringify(
+        borrows.filter(docs=>{
+          if(docs.bookCode.toString() != book.bookCode && docs.email.toString() === book.email ){
+            return docs
+          }
+        })
+      
+        ))
+      
+    })
+    alert("Book returned")
+    window.location.reload()
+  }
 return (
 <div>
 <div className="dashboard">
@@ -74,6 +102,9 @@ borrows.filter((filt)=>{
   <td>{doc.category}</td>
   <td>{doc.author}</td>
   <td>{doc.bookCode}</td>
+  <td>
+    <button className="button indigo text-white" onClick={()=>Return(doc)}>Return</button>
+  </td>
 </tr>
 ))
 :

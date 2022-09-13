@@ -23,6 +23,8 @@ export default function Book() {
     const [author, setauthor] = useState("")
     const [bookCode, setbookCode] = useState("")
     const [category, setcategory] = useState("")
+    const [shelve, setshelve] = useState("")
+    // const [category, setcategory] = useState("")
     const [books, setbooks] = useState([])
     const [categories, setcategories] = useState([])
     useEffect(() => {
@@ -52,7 +54,9 @@ if(title && isbn && author && bookCode && category){
             isbn:isbn,
             author:author,
             bookCode:bookCode,
-            category:category
+            category:category,
+            shelve:shelve,
+            borrowed:false
         }
     )
 new Promise((resolve,reject)=>{
@@ -109,7 +113,13 @@ localStorage.setItem("books",
 <Input type="text" label="Book Code" funcss="full-width" bordered={true}   onChange={(e)=>setbookCode(e.target.value)}/>
 </IconicInput>
     </Col>
-    <Col sm={12} md={12} lg={12} funcss="padding">
+    <Col sm={12} md={6} lg={6} funcss="padding">
+    <IconicInput funcss="full-width" position="left" >
+    <Icon icon="icon-lock" color="primary" />
+<Input type="text" label="Shelve" funcss="full-width" bordered={true}   onChange={(e)=>setshelve(e.target.value)}/>
+</IconicInput>
+    </Col>
+    <Col sm={12} md={6} lg={6} funcss="padding">
     <select className='input bordered full-width'  onChange={(e)=>setcategory(e.target.value)}>
     <option>select category</option>
      {
@@ -122,6 +132,7 @@ localStorage.setItem("books",
      }
     </select>
     </Col>
+
     <Col sm={12} md={12} lg={12} funcss="padding">
         <Button text="Add Book" color="white" bg="primary" funcss="full-width"
         onClick={HandleAddBook}
