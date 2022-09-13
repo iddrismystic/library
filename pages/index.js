@@ -48,7 +48,7 @@ resolve("/dashboard")
 <Card funcss="width-400-max center white round-edge padding-20 form">
 
 <p className="padding">
-<Typography heading="h2" text="Library Catalogue" />
+<Typography heading="h2" text="DHLTU Library Catalogue System" />
 </p>
 
 <Grid>

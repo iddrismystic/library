@@ -45,6 +45,11 @@ export default function Books() {
     }
   })
   const HandleBorrow = (book)=>{
+var fullName = prompt("Full Name : ", "");
+var StudentId = prompt("Student Id: ", "");
+var dateReturn = prompt("Return Date : ", "");
+
+if(fullName && StudentId && dateReturn){
     borrows.push(
       {
         email:user,
@@ -53,6 +58,9 @@ export default function Books() {
         category:book.category,
         author:book.author,
         bookCode:book.bookCode,
+        fullName:fullName,
+        StudentId:StudentId,
+        dateReturn:dateReturn
       }
     )
 new Promise ((resolve , reject)=>{
@@ -71,6 +79,9 @@ books.filter(docs=>{
   alert(user + ": Book borrowed successfully.");
    window.location.assign("/user")
 })
+}else{
+  alert("Make sure to enter all details")
+}
   }
 return (
 <div>
