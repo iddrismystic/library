@@ -113,6 +113,7 @@ return (
                       <th>Category</th>
                       <th>Author</th>
                       <th>Book Code</th>
+                      <th>Shelve</th>
                       <th>Borrow Book</th>
                     </tr>
                 {
@@ -139,6 +140,7 @@ return (
                   <td>{doc.category}</td>
                   <td>{doc.author}</td>
                   <td>{doc.bookCode}</td>
+                  <td>{doc.shelve ? doc.shelve : ""}</td>
                   {
                     doc.borrowed ?
                     <td>Borrowed</td>
